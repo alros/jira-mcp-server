@@ -1,0 +1,8 @@
+{
+  "servers": {
+    "jira": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/jira-mcp-server.sh"
+    }
+  }
+}

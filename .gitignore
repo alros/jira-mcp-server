@@ -1,0 +1,5 @@
+target/
+secrets.sh
+.idea/
+*.iml
+.DS_Store

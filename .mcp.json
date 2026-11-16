@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "jira": {
+      "type": "stdio",
+      "command": "./jira-mcp-server.sh",
+      "args": []
+    }
+  }
+}
