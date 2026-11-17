@@ -4,6 +4,9 @@ A small [MCP](https://modelcontextprotocol.io) server that queries Jira over **s
 with Java 25 and Quarkus and compiled to a native macOS binary that starts in about 30 ms.
 It works with Claude (Code / Desktop) and GitHub Copilot.
 
+> [!NOTE]
+> **Curious why I built it?** Read the story on my blog: [Why I wrote a Jira MCP server →](https://blog.rossotto.net/2026-11-17-jira-mcp-server/)
+
 ## Tool
 
 ### `fetch_tickets`
