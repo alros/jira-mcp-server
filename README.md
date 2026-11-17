@@ -93,7 +93,7 @@ cp secrets.sh.example secrets.sh && chmod 600 secrets.sh
 ## Build
 
 ```bash
-./build.sh        # native binary -> target/jira-mcp-server-1.0.0-SNAPSHOT-runner (needs GraalVM 25)
+./build.sh        # native binary -> target/jira-mcp-server-1.1.0-runner (needs GraalVM 25)
 ./build.sh jvm    # JVM build     -> target/quarkus-app/quarkus-run.jar
 ./mvnw test       # unit tests (converters + HTTP client against a local fake Jira)
 ```

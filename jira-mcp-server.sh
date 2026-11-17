@@ -15,7 +15,7 @@ if [[ -f "$DIR/secrets.sh" ]]; then
 fi
 export JIRA_URL JIRA_USERNAME JIRA_TOKEN JIRA_FIELDS 2>/dev/null || true
 
-NATIVE="$DIR/target/jira-mcp-server-1.0.0-SNAPSHOT-runner"
+NATIVE="$DIR/target/jira-mcp-server-1.1.0-runner"
 JAR="$DIR/target/quarkus-app/quarkus-run.jar"
 
 if [[ -x "$NATIVE" ]]; then
