@@ -60,3 +60,40 @@ jobs:
           name: jira-mcp-server-macos-arm64
           path: target/*-runner
           if-no-files-found: error
+
+  release:
+    name: GitHub release
+    # Only for tag pushes (e.g. 1.1.0 or v1.1.0).
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [jvm, native]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+
+      - name: Package
+        working-directory: dist
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF_NAME}"
+          # Artifacts lose the executable bit: restore it and ship as tar.gz to keep it.
+          mv jira-mcp-server-macos-arm64/*-runner jira-mcp-server
+          chmod +x jira-mcp-server
+          tar -czf "jira-mcp-server-${tag}-macos-arm64.tar.gz" jira-mcp-server
+          (cd jira-mcp-server-jvm && zip -qr "../jira-mcp-server-${tag}-jvm.zip" .)
+          ls -l *.tar.gz *.zip
+
+      - name: Publish release
+        working-directory: dist
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "${GITHUB_REF_NAME}" \
+            --generate-notes \
+            --verify-tag \
+            *.tar.gz *.zip
